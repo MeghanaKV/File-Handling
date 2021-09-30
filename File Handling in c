@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<iostream>
+int main()
+{
+      FILE *fp,*source,*target;
+      char ch;
+      char source_file[]="x1.txt";
+      char target_file[]="x2.txt";
+      
+      int i,pos;
+      fp=fopen("input.txt","r");
+      if(fp==NULL)
+      {
+            printf("File does not exist..");
+      }
+      fseek(fp,0,SEEK_END);
+      pos=ftell(fp);
+      //printf("Current postion is %d\n",pos);
+      i=0;
+      while(i<pos)
+       {
+            i++;
+            fseek(fp,-i,SEEK_END);
+            //printf("%c",fgetc(fp));
+            ch=fgetc(fp);
+            printf("%c",ch);
+        }
+ {
+   source = fopen(source_file, "r");
+   if (source == NULL)
+    {
+      printf("Press any key to exit...\n");
+      exit(EXIT_FAILURE);
+   }
+   target = fopen(target_file, "w");
+   if (target == NULL)
+    {
+      fclose(source);
+      printf("Press any key to exit...\n");
+      exit(EXIT_FAILURE);
+   }
+   while ((ch = fgetc(source)) != EOF)
+      fputc(ch, target);
+   printf("File copied successfully.\n");
+   fclose(source);
+   fclose(target);
+}
+   return 0;
+}
